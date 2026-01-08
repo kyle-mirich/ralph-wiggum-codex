@@ -27,10 +27,6 @@ chmod +x ralph.sh
 ```
 `-n` is the number of loop iterations.
 
-## How the loop works
-- Runs the same prompt `n` times.
-- Keeps the script minimal so your repo-specific rules live in `AGENTS.md`.
-
 ## Configure your agent (AGENTS.md)
 Put your project-specific guidance in `AGENTS.md`. The loop is intentionally dumb; your instructions should teach the agent how to work in your repo.
 
