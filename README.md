@@ -29,7 +29,6 @@ chmod +x ralph.sh
 
 ## How the loop works
 - Runs the same prompt `n` times.
-- Writes the last response from each iteration to `codex_last_message_iter_<n>.txt`.
 - Keeps the script minimal so your repo-specific rules live in `AGENTS.md`.
 
 ## Configure your agent (AGENTS.md)
