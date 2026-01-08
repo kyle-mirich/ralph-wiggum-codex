@@ -1,0 +1,8 @@
+model = "gpt-5.2-codex"
+model_reasoning_effort = "medium"
+web_search_request = true
+approval_policy = "never"
+sandbox_mode = "workspace-write"
+
+[projects."PROJECT_DIRECTORY"]
+trust_level = "trusted"
