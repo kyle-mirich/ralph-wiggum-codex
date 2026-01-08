@@ -2,7 +2,7 @@
 
 Run a simple loop that repeatedly executes the same Codex prompt, while letting you define project-specific rules in `AGENTS.md`.
 
-Credit: Inspired by the Ralph Wiggum framework by Geoffrey Huntley.
+Credit: Inspired by the Ralph Wiggum loop by Geoffrey Huntley.
 
 ## Requirements
 - Codex CLI available on your PATH (`codex`)
