@@ -59,21 +59,10 @@ Example guidance snippet:
 - Create a commit with a clear message at the end of each loop.
 ```
 
-## Safety warning
-This loop can modify files and run commands depending on how you configure Codex. Use it at your own risk. I am not responsible for any damages, data loss, or unintended changes caused by using this loop.
-It is always recommended to run this loop in a sandboxed environment or VM. Because Ralph needs to make git commits, it requires `danger-full-access`.
-
-## Cost warning
-If you run Codex via the API, be mindful of usage costs. Repeated loops can rack up charges quickly. It is recommended to use your OpenAI user account (or a dedicated account) with clear billing limits.
-
-## Security
-
-Codex helps protect your code and data and reduces the risk of misuse.
-
-By default, the agent runs with network access turned off. Locally, Codex uses an OS-enforced sandbox that limits what it can touch (typically to the current workspace), plus an approval policy that controls when it must stop and ask you before acting.
-
-Review the Codex safety and security documentation before using: [Codex Docs](https://developers.openai.com/codex/security)
-
+## Safety & security
+- This loop can modify files and run commands depending on how you configure Codex. Prefer running it in a sandboxed environment or VM.
+- `danger-full-access` gives the agent broad permissions; only use it when you explicitly want that (for example, to allow creating git commits).
+- Review the Codex safety and security documentation before using: [Codex Docs](https://developers.openai.com/codex/security)
 
 ### Recommended guardrails
 
@@ -81,3 +70,6 @@ Review the Codex safety and security documentation before using: [Codex Docs](ht
 - Keep `network_access = false` unless your security review allows a collector or domains required by your workflows.
 - Use managed configuration to pin OTEL settings (exporter, environment), but keep `log_user_prompt = false` unless your policy explicitly allows storing prompt contents.
 - Periodically audit diffs between local `config.toml` and managed policy to catch drift; managed layers should win over local flags and files.
+
+## Cost warning
+If you run Codex via the API, be mindful of usage costs. Repeated loops can rack up charges quickly. It is recommended to use your OpenAI user account (or a dedicated account) with clear billing limits.
