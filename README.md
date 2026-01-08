@@ -64,12 +64,6 @@ Example guidance snippet:
 - `danger-full-access` gives the agent broad permissions; only use it when you explicitly want that (for example, to allow creating git commits).
 - Review the Codex safety and security documentation before using: [Codex Docs](https://developers.openai.com/codex/security)
 
-### Recommended guardrails
-
-- Prefer `workspace-write` with approvals for most users; reserve full access for controlled containers.
-- Keep `network_access = false` unless your security review allows a collector or domains required by your workflows.
-- Use managed configuration to pin OTEL settings (exporter, environment), but keep `log_user_prompt = false` unless your policy explicitly allows storing prompt contents.
-- Periodically audit diffs between local `config.toml` and managed policy to catch drift; managed layers should win over local flags and files.
 
 ## Cost warning
 If you run Codex via the API, be mindful of usage costs. Repeated loops can rack up charges quickly. It is recommended to use your OpenAI user account (or a dedicated account) with clear billing limits.
