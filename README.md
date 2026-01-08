@@ -18,20 +18,14 @@ cp .codex/config.example.toml .codex/config.toml
 
 3) Open `.codex/config.toml` and replace the project path inside the brackets with your local repo path.
 
-4) Make the script executable and run it:
+4) Edit `PROMPT.md` with the prompt you want to run in the loop.
+
+5) Make the script executable and run it:
 ```sh
 chmod +x ralph.sh
-./ralph.sh -p "your prompt here" -n 3
+./ralph.sh -n 3
 ```
-
-Optional flags:
-- `-m <model>`: model id (default: `gpt-5.2-codex`)
-- `-r <reasoning>`: reasoning label (stored in prompt only)
-
-Example:
-```sh
-./ralph.sh -p "refactor the utils module for clarity" -n 5 -m gpt-5.2-codex -r medium
-```
+`-n` is the number of loop iterations.
 
 ## How the loop works
 - Runs the same prompt `n` times.
