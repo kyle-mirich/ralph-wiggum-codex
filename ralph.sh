@@ -4,18 +4,15 @@ set -euo pipefail
 MODEL_ID="gpt-5.2-codex"
 REASONING_EFFORT="medium"
 MAX_ITERS=""
-USER_PROMPT=""
-PROMPT_SET="false"
 ITERS_SET="false"
 
 usage() {
-  echo 'Usage: ./ralph.sh -p "<prompt>" -n <iters> [-m <model>] [-r <reasoning>]'
-  echo 'Required: -p, -n'
+  echo 'Usage: ./ralph.sh -n <iters> [-m <model>] [-r <reasoning>]'
+  echo 'Required: -n'
 }
 
-while getopts ":p:n:m:r:h" opt; do
+while getopts ":n:m:r:h" opt; do
   case "$opt" in
-    p) USER_PROMPT="$OPTARG"; PROMPT_SET="true" ;;
     n) MAX_ITERS="$OPTARG"; ITERS_SET="true" ;;
     m) MODEL_ID="$OPTARG" ;;
     r) REASONING_EFFORT="$OPTARG" ;;
@@ -26,10 +23,19 @@ while getopts ":p:n:m:r:h" opt; do
 done
 
 [[ "${ITERS_SET}" != "true" || -z "${MAX_ITERS}" ]] && { echo "ERROR: -n required"; usage; exit 1; }
-[[ "${PROMPT_SET}" != "true" || -z "${USER_PROMPT}" ]] && { echo "ERROR: -p required"; usage; exit 1; }
 if ! [[ "${MAX_ITERS}" =~ ^[0-9]+$ ]] || [[ "${MAX_ITERS}" -lt 1 ]]; then
   echo "ERROR: -n must be a positive integer"
   usage
+  exit 1
+fi
+if [[ ! -f "PROMPT.md" ]]; then
+  echo "ERROR: PROMPT.md not found in repo root"
+  exit 1
+fi
+
+USER_PROMPT="$(cat PROMPT.md)"
+if [[ -z "${USER_PROMPT}" ]]; then
+  echo "ERROR: PROMPT.md is empty"
   exit 1
 fi
 
