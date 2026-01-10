@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-MODEL_ID="gemini-3-pro-preview"
 MAX_ITERS=""
 ITERS_SET="false"
+MODEL_ID=""
 
 usage() {
   echo 'Usage: ./ralph-gemini.sh -n <iters> [-m <model>]'
@@ -37,7 +37,11 @@ if [[ -z "${USER_PROMPT}" ]]; then
   exit 1
 fi
 
-echo "Ralph [model=${MODEL_ID} iters=${MAX_ITERS}]"
+if [[ -n "${MODEL_ID}" ]]; then
+  echo "Ralph [model=${MODEL_ID} (override) iters=${MAX_ITERS}]"
+else
+  echo "Ralph [iters=${MAX_ITERS}]"
+fi
 
 for ((i=1;i<=MAX_ITERS;i++)); do
   echo "== Iter $i/$MAX_ITERS =="
@@ -45,8 +49,13 @@ for ((i=1;i<=MAX_ITERS;i++)); do
 Ralph iter $i.
 TASK: ${USER_PROMPT}
 EOF
-  # Using -y (yolo) to auto-approve tools for autonomous loop
-  gemini --model "${MODEL_ID}" -y "$PROMPT" > "gemini_last_message_iter_${i}.txt"
+  # Using -y (yolo) to auto-approve tools for autonomous loop.
+  # Sandbox and model are now controlled by .gemini/settings.json unless -m is overridden
+  if [[ -n "${MODEL_ID}" ]]; then
+     gemini --model "${MODEL_ID}" -y "$PROMPT" > "gemini_last_message_iter_${i}.txt"
+  else
+     gemini -y "$PROMPT" > "gemini_last_message_iter_${i}.txt"
+  fi
   sleep 2
 done
 
