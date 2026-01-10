@@ -56,3 +56,29 @@ Example guidance snippet:
 
 ## Cost warning
 If you run Codex via the API, be mindful of usage costs. Repeated loops can rack up charges quickly. It is recommended to use your OpenAI user account (or a dedicated account) with clear billing limits.
+
+## Gemini CLI Support
+
+This repository also supports the Gemini CLI via `ralph-gemini.sh`.
+
+### Quick start
+1) Install Gemini CLI: [Gemini CLI Docs](https://gemini-cli.com/)
+
+2) Edit `.gemini/settings.json` to configure your model and sandbox settings.
+   Default:
+   ```json
+   {
+     "model": "gemini-3-pro-preview",
+     "sandbox": true
+   }
+   ```
+
+3) Edit `PROMPT.md` with your task.
+
+4) Run the loop:
+```sh
+chmod +x ralph-gemini.sh
+./ralph-gemini.sh -n 3
+```
+
+The script runs in "YOLO" mode (autonomous) by default. Use `.gemini/settings.json` or the `-m` flag to adjust settings.
