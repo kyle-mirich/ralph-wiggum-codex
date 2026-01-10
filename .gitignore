@@ -209,3 +209,5 @@ __marimo__/
 .codex/config.toml
 
 .DS_Store
+./uv.lock
+./pyproect.toml
