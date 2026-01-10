@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-MODEL_ID="gemini-2.0-flash-thinking-exp-1219"
+MODEL_ID="gemini-3-pro-preview"
 REASONING_EFFORT="medium"
 MAX_ITERS=""
 ITERS_SET="false"
